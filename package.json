@@ -16,5 +16,9 @@
     "morgan": "^1.9.1",
     "nodemon": "^1.19.1",
     "pg-promise": "^8.7.3"
+  },
+  "devDependencies": {
+    "jasmine": "^3.0.0",
+    "request": "^2.83.0"
   }
 }
