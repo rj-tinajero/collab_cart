@@ -1,10 +1,12 @@
 const request = require("request");
 const server = require("../../src/server");
-const base = "http://localhost:3000/";
+const base = "http://localhost:3000/topics/";
 
-describe("routes : static", () => {
-  describe("GET /", () => {
-    it("should return status code 200", (done) => {
+describe("routes : topics", () => {
+
+  describe("GET /topics", () => {
+
+    it("should return a status code 200", (done) => {
       request.get(base, (err, res, body) => {
         expect(res.statusCode).toBe(200);
         done();
