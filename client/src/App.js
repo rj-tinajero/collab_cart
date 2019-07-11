@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import { Route, Link } from 'react-router-dom';
 import './App.css';
+import Landing from "./components/Landing";
+import Lists from "./components/Lists";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() { 
+    return (
+      <div className="App">
+        <header className="App-header">
+          <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+           <div className="container">
+             <a className="navbar-brand" href="/">CollabCart</a>
+             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+             </button>
+             <div className="collapse navabr-collapse" id="navbarResponsive">
+               <ul className="navbar-nav ml-auto">
+                 <li className="nav-item">
+                   
+                 </li>
+               </ul>
+             </div>
+           </div>
+            <Link to='/'>Home</Link>
+            <Link to='/lists'>Lists</Link>
+          </nav>
+        
+        </header>
+        <main className="body">
+          <Route exact path="/" component={Landing} /> 
+          <Route path="/lists" component={Lists} />
+        </main>
+      </div>
+    );
+  }
 }
 
 export default App;

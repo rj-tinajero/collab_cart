@@ -3,6 +3,6 @@ const router = express.Router();
 
 const listController = require("../controllers/listController")
 
-router.get("/lists", listController.index);
+router.get("/api/lists", listController.index);
 
 module.exports = router;
