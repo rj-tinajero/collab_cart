@@ -4,7 +4,7 @@ module.exports = {
    index(req, res, next){
      listQueries.getAllLists((err, lists) => {
         if(err){ 
-           res.redirct(500, "static/index");
+           res.redirect(500, "static/index");
         } else {
            res.json(lists)
         }
@@ -18,7 +18,7 @@ module.exports = {
          if(err) {
             res.redirect(500, "/")
          } else {
-            res.redirect("/");
+            res.redirect("/lists");
          }
       })
    }

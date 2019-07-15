@@ -8,6 +8,7 @@ class App extends Component {
   render() { 
     return (
       <div className="App">
+        
         <header className="App-header">
           <nav className="navbar navbar-expand-lg navbar-light fixed-top">
            <div className="container">
@@ -26,12 +27,13 @@ class App extends Component {
             <Link to='/'>Home</Link>
             <Link to='/lists'>Lists</Link>
           </nav>
-        
         </header>
+
         <main className="body">
           <Route exact path="/" component={Landing} /> 
           <Route path="/lists" component={Lists} />
         </main>
+
       </div>
     );
   }

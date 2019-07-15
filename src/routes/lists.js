@@ -4,5 +4,6 @@ const router = express.Router();
 const listController = require("../controllers/listController")
 
 router.get("/api/lists", listController.index);
+router.post("/lists", listController.create);
 
 module.exports = router;
