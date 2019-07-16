@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom';
 import './App.css';
 import Landing from "./components/Landing";
 import Lists from "./components/Lists";
+import ListItems from "./components/ListItems";
 
 class App extends Component {
   render() { 
@@ -32,6 +33,7 @@ class App extends Component {
         <main className="body">
           <Route exact path="/" component={Landing} /> 
           <Route path="/lists" component={Lists} />
+          <Route path="/lists/:id" component={ListItems} />
         </main>
 
       </div>

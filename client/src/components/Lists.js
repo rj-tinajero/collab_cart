@@ -7,11 +7,18 @@ class Lists extends Component {
       super();
       this.state = {
          lists: [],
-         inputText: "new list"
+         inputText: "enter new list"
       };
-
+      
+      this.createList = this.createList.bind(this);
+      this.textChanged = this.textChanged.bind(this);
+      this.fetchLists = this.fetchLists.bind(this);
    }
    componentDidMount() { 
+      this.fetchLists();
+   }
+
+   fetchLists() {
       axios.get('/api/lists')
       .then(response => response.data)
       .then((data) => { 
@@ -20,6 +27,7 @@ class Lists extends Component {
          }
          
       })
+      
    }
 
    textChanged(evt) {
@@ -32,13 +40,21 @@ class Lists extends Component {
       axios({
         url: `http://localhost:5000/lists`,
         method: 'post',
-        data: `description=${this.state.inputText}`
-      }).then(this.fetchEntries);
+        data: `title=${this.state.inputText}`
+      }).then(this.fetchLists)
+      .catch(err => console.log(err))
     }
 
 
 
    render() {
+      function deleteList(id, cb) {
+         return (evt) => {
+           evt.preventDefault();
+           axios.get(`http://localhost:5000/lists/${id}/delete`).then(cb);
+         };
+       }
+
       return(
       <React.Fragment>
          <form>
@@ -47,18 +63,18 @@ class Lists extends Component {
          </form>
          
          <ul>
-            {console.log(this.state, "render function")}
-            { this.state.lists.map(list => <li>{list.title}</li>) }
+            { this.state.lists.map(list => 
+            <li key={list.id}>
+               <Link to={`/list/${list.id}`} >
+                  {list.title}
+               </Link>
+               <button onClick={deleteList(list.id, this.fetchLists)}>X</button>
+            </li>) }
          </ul>
       </React.Fragment>
          
       )
    } 
 }
-
-   
-
-
-
 
 export default Lists;
