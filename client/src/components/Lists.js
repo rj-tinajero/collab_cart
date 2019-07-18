@@ -54,9 +54,10 @@ class Lists extends Component {
            axios.get(`http://localhost:5000/lists/${id}/delete`).then(cb);
          };
        }
+       
 
       return(
-      <React.Fragment>
+      <div>
          <form>
             <input type="text" value={this.state.inputText} onChange={this.textChanged}/>
             <button id="button" onClick={this.createList}>Send</button>
@@ -65,13 +66,17 @@ class Lists extends Component {
          <ul>
             { this.state.lists.map(list => 
             <li key={list.id}>
-               <Link to={`/list/${list.id}`} >
+               <Link to={
+               {pathname: `/lists/${list.id}`,
+               state: { list: list }
+               }}
+            >
                   {list.title}
                </Link>
                <button onClick={deleteList(list.id, this.fetchLists)}>X</button>
             </li>) }
          </ul>
-      </React.Fragment>
+      </div>
          
       )
    } 
