@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import { Route, Link } from 'react-router-dom';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 import Landing from "./components/Landing";
 import Lists from "./components/Lists";
 import ListItems from "./components/ListItems";
+import SignUp from "./components/SignUp";
+import SignIn from "./components/SignIn";
 
 class App extends Component {
   render() { 
@@ -27,6 +30,11 @@ class App extends Component {
            </div>
             <Link to='/'>Home</Link>
             <Link to='/lists'>Lists</Link>
+            {!currentUser &&
+              <Link to='/users/sign_in'>Sign In</Link>
+            }
+            
+            {/* <Link to='/users/sign_up'>Sign Up</Link> */}
           </nav>
         </header>
 
@@ -34,6 +42,8 @@ class App extends Component {
           <Route exact path="/" component={Landing} /> 
           <Route exact path="/lists" component={Lists} />
           <Route path="/lists/:id" component={ListItems} />
+          <Route path="/users/sign_up" component={SignUp} />
+          <Route path="/users/sign_in" component={SignIn} />
         </main>
 
       </div>
