@@ -10,7 +10,6 @@ class ListItems extends Component {
          inputText: "enter new item"
       };
 
-      console.log("<<<", props.location.state)
       this.fetchItems = this.fetchItems.bind(this);
       this.textChanged = this.textChanged.bind(this);
       this.createItem = this.createItem.bind(this);
@@ -56,6 +55,24 @@ class ListItems extends Component {
            }).then(cb);
          };
        }
+       function tagItem(id, cb) {
+         return (evt) => {
+            evt.preventDefault();
+            axios.post(`http://localhost:5000/lists/${id}/update`, {
+               id: id,
+               purchased: true
+            }).then(cb);
+         }
+       }
+       function unTagItem(id, cb) {
+         return (evt) => {
+            evt.preventDefault();
+            axios.post(`http://localhost:5000/lists/${id}/update`, {
+               id: id,
+               purchased: null
+            }).then(cb);
+         }
+       }
       
       return(
       <React.Fragment>
@@ -73,6 +90,12 @@ class ListItems extends Component {
                   {item.title}
               
                <button onClick={deleteItem(item.id, this.fetchItems)}>X</button>
+               {item.purchased === null  &&
+                  <button onClick={tagItem(item.id, this.fetchItems)}>Mark as Purchased</button>
+               } 
+               {item.purchased === true &&
+                  <button onClick={unTagItem(item.id, this.fetchItems)}>Unmark as Purchased</button>
+               }
             </li>) }
          </ul> 
       </React.Fragment>   

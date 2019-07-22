@@ -26,11 +26,11 @@ module.exports = {
       .catch((err) => console.log(err, "err in destroy"));
    },
    update(req, res, next) {
-      itemQueries.updateItem(req.params.id, req.body, (err, item) => {
-         if(err || item == null) {
-            res.redirct(404, '/');
+      itemQueries.updateItem(req.body.id, req.body, (err, item) => { console.log(req.body.id, "req")
+         if(err || item == null) { console.log(err, "error with update");
+            res.redirect(404, '/');
          } else {
-            res.redirect('/')
+            res.redirect('/');
          }
       });
    },

@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
     listId: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    purchased: {
+      allowNull: true,
+      type: DataTypes.BOOLEAN
     }
   }, {});
   Item.associate = function(models) {
@@ -16,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "listId",
       onDelete: "CASCADE"
     });
+    Item.hasOne(models.Purchased, {
+      foreignKey: "itemId",
+      as: "purchaseds"
+    })
   };
   return Item;
 };

@@ -15,7 +15,6 @@ module.exports = {
       return Item.findById(id)
       .then((item) => {
          if(!item) {
-            console.log(err, "err in update")
             return callback("item not found")
          }
          item.update(updatedItem, {

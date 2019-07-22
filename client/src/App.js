@@ -30,9 +30,9 @@ class App extends Component {
            </div>
             <Link to='/'>Home</Link>
             <Link to='/lists'>Lists</Link>
-            {!currentUser &&
-              <Link to='/users/sign_in'>Sign In</Link>
-            }
+            
+            <Link to='/users/sign_in'>Sign In</Link>
+            
             
             {/* <Link to='/users/sign_up'>Sign Up</Link> */}
           </nav>
