@@ -76,28 +76,30 @@ class ListItems extends Component {
       
       return(
       <React.Fragment>
-         <h2>{this.state.list.title}</h2>
-         
-         <form>
-            <input type="text" value={this.state.inputText} onChange={this.textChanged}/>
-            <button id="button" onClick={this.createItem}>Send</button>
-         </form>
-
-         <ul>
-         { this.state.items.map(item => 
-            <li key={item.id}>
-               
-                  {item.title}
-              
-               <button onClick={deleteItem(item.id, this.fetchItems)}>X</button>
-               {item.purchased === null  &&
-                  <button onClick={tagItem(item.id, this.fetchItems)}>Mark as Purchased</button>
-               } 
-               {item.purchased === true &&
-                  <button onClick={unTagItem(item.id, this.fetchItems)}>Unmark as Purchased</button>
-               }
-            </li>) }
-         </ul> 
+         <div className="container">
+           <h2>{this.state.list.title}</h2>
+           
+           <form>
+              <input type="text" value={this.state.inputText} onChange={this.textChanged}/>
+              <button className="btn btn-primary" id="button" onClick={this.createItem}>Send</button>
+           </form>
+   
+           <ul>
+           { this.state.items.map(item => 
+              <li key={item.id}>
+                 
+                    {item.title}
+                
+                 <button className="btn btn-danger" onClick={deleteItem(item.id, this.fetchItems)}>X</button>
+                 {item.purchased === null  &&
+                    <button className="btn btn-outline-success" onClick={tagItem(item.id, this.fetchItems)}>Mark as Purchased</button>
+                 } 
+                 {item.purchased === true &&
+                    <button className="btn btn-success" onClick={unTagItem(item.id, this.fetchItems)}>Unmark as Purchased</button>
+                 }
+              </li>) }
+           </ul> 
+         </div>
       </React.Fragment>   
       )
    }

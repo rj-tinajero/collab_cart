@@ -16,8 +16,8 @@ module.exports = {
          }
       })
    },
-   destroy(req, res, next) { console.log(req.body.id, "reqparamsid");
-      Item.destroy({
+   destroy(req, res, next) { console.log(req.body.id, "<<<<<<<<<<")
+      Item.destroy({ 
          where: {
             id: req.body.id
          }
@@ -26,7 +26,7 @@ module.exports = {
       .catch((err) => console.log(err, "err in destroy"));
    },
    update(req, res, next) {
-      itemQueries.updateItem(req.body.id, req.body, (err, item) => { console.log(req.body.id, "req")
+      itemQueries.updateItem(req.body.id, req.body, (err, item) => { 
          if(err || item == null) { console.log(err, "error with update");
             res.redirect(404, '/');
          } else {

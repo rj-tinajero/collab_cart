@@ -11,7 +11,7 @@ module.exports = {
       email: newUser.email,
       password: hashedPassword
     })
-    .then((user) => {
+    .then((user) => { 
       callback(null, user);
     })
     .catch((err) => {

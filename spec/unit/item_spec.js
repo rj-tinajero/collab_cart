@@ -1,6 +1,9 @@
 const sequelize = require("../../src/db/models/index").sequelize;
+const request = require("request");
+const server = require("../../src/server");
 const List = require("../../src/db/models").List;
 const Item = require("../../src/db/models").Item;
+const base = "http://localhost:5000/lists/";
 
 describe("Item", () => {
 
@@ -16,7 +19,8 @@ describe("Item", () => {
         this.list = list;
         Item.create({
           title: "Shaver",
-          listId: this.list.id
+          listId: this.list.id,
+          purchased: null
         })
         .then((item) => {
           this.item = item;
@@ -86,6 +90,54 @@ describe("Item", () => {
    });
 
  });
+
+ describe("POST /list/:listId/delete" , () => {
+  it("should delete the item", (done) => {
+    const options = {
+      url: `${base}${this.item.id}/delete`,
+      form: {
+        id: this.item.id
+      }
+    };
+    Item.all()
+      .then((items) => {
+        const itemCountBeforeDelete = items.length;
+
+        expect(itemCountBeforeDelete).toBe(1);
+        request.post(options, (err, res, body) => {
+          Item.all()
+          .then((items) => {
+            expect(err).toBeNull();
+            expect(items.length).toBe(itemCountBeforeDelete - 1);
+            done();
+          });
+
+        });
+      });
+  });
+ });
+
+ describe("POST /list/:listId/update", () => {
+   it("should update the items purchased value", (done) => {
+     const options = {
+       url: `${base}${this.item.id}/update`,
+       form: {
+         id: this.item.id,
+         purchased: true
+       }
+     };
+     request.post(options,
+      (err, res, body) => {
+        Item.findOne({
+          where: { purchased: true }
+        })
+        .then((item) => { console.log(item.purchased)
+          expect(item.purchased).toBe(true);
+          done();
+        })
+      })
+   })
+ })
 
 
 });

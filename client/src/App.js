@@ -9,6 +9,10 @@ import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 
 class App extends Component {
+  componentDidMount() {
+    
+  }
+
   render() { 
     return (
       <div className="App">
@@ -16,25 +20,24 @@ class App extends Component {
         <header className="App-header">
           <nav className="navbar navbar-expand-lg navbar-light fixed-top">
            <div className="container">
-             <a className="navbar-brand" href="/">CollabCart</a>
-             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-             </button>
-             <div className="collapse navabr-collapse" id="navbarResponsive">
+             <a className="navbar-brand" href="/"><h5>CollabCart</h5></a>
+             
                <ul className="navbar-nav ml-auto">
                  <li className="nav-item">
-                   
+                  <Link className="nav-link" to='/'><h6>Home</h6></Link>
+                 </li>
+                 <li className="nav-item">
+                  <Link className="nav-link" to='/lists'><h6>Lists</h6></Link>
+                 </li>
+                 <li className="nav-item">
+                  <Link className="nav-link" to='/users/sign_in'><h6>Sign In</h6></Link>
+                 </li>
+                 <li className="nav-link">
+                  
                  </li>
                </ul>
              </div>
-           </div>
-            <Link to='/'>Home</Link>
-            <Link to='/lists'>Lists</Link>
-            
-            <Link to='/users/sign_in'>Sign In</Link>
-            
-            
-            {/* <Link to='/users/sign_up'>Sign Up</Link> */}
+      
           </nav>
         </header>
 
@@ -45,7 +48,7 @@ class App extends Component {
           <Route path="/users/sign_up" component={SignUp} />
           <Route path="/users/sign_in" component={SignIn} />
         </main>
-
+      
       </div>
     );
   }

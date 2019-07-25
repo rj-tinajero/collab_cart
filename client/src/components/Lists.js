@@ -57,10 +57,10 @@ class Lists extends Component {
        
 
       return(
-      <div>
+      <div className="container">
          <form>
             <input type="text" value={this.state.inputText} onChange={this.textChanged}/>
-            <button id="button" onClick={this.createList}>Send</button>
+            <button className="btn btn-primary" id="button" onClick={this.createList}>Send</button>
          </form>
          
          <ul>
@@ -73,7 +73,7 @@ class Lists extends Component {
             >
                   {list.title}
                </Link>
-               <button onClick={deleteList(list.id, this.fetchLists)}>X</button>
+               <button className="bth btn-danger" onClick={deleteList(list.id, this.fetchLists)}>X</button>
             </li>) }
          </ul>
       </div>

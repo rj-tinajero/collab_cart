@@ -9,7 +9,7 @@ const flash = require("express-flash");
 const expressValidator = require("express-validator");
 
 module.exports = {
-  init(app, express){
+  init(app, express) {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(expressValidator());
@@ -24,7 +24,7 @@ module.exports = {
     app.use(flash());
     passportConfig.init(app);
 
-    app.use((req,res,next) => {
+    app.use((req, res, next) => {
       res.locals.currentUser = req.user;
       next();
     })

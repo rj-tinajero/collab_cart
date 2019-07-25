@@ -3,9 +3,9 @@ const passport = require("passport");
 
 module.exports = {
    signUp(req, res, next){
-     res.render("users/sign_up");
+     res.json("Sign up");
    },
-   create(req, res, next){
+   create(req, res, next){ 
            let newUser = {
              username: req.body.username,
              email: req.body.email,
@@ -17,8 +17,8 @@ module.exports = {
                res.redirect("/users/sign_up");
              } else {
                passport.authenticate("local")(req, res, () => {
-                 req.flash("notice", "You've successfully signed in!");
                  res.redirect("/");
+                 res.json(req.user);
                })
              }
            });
@@ -29,17 +29,20 @@ module.exports = {
    signIn(req, res, next){
       passport.authenticate("local")(req, res, function () {
          if(!req.user){
-            req.flash("notice", "Sign in failed. Please try again.")
+            req.flash("notice", "Sign in failed. Please try again.");
             res.redirect("/users/sign_in");
          } else {
             req.flash("notice", "You've successfully signed in!");
-            res.redirect("/");
+            res.json(req.user);
          }
       })
    },
-   signOut(req, res, next){
+   signOut(req, res, next){ 
       req.logout();
       req.flash("notice", "You've successfully signed out!");
-      res.redirect("/");
+      res.json(req.user);
+    },
+    currentUser(req, res, next) {
+      res.json(req.user)
     }
  }
