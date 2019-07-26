@@ -7,11 +7,14 @@ const session = require("express-session");
 const passportConfig = require("./passport-config");
 const flash = require("express-flash");
 const expressValidator = require("express-validator");
+const jwt = require("jsonwebtoken");
+const cookParser = require('cookie-parser');
 
 module.exports = {
   init(app, express) {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
+    app.use(cookParser());
     app.use(expressValidator());
     app.use(cors());
     app.use(logger('dev'));

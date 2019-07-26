@@ -11,6 +11,7 @@ module.exports = function(app) {
    app.use('/api/lists/:listId', proxy({ target: 'http://localhost:5000'}));
    app.use('/users/sign_up', proxy({ target: 'http://localhost:5000' }));
    app.use('/users/create', proxy({ target: 'http://localhost:5000' }));
-   app.use('/users/sign_out', proxy({ target: 'http://localhost:5000' }));
-   app.use('/users/sign_in', proxy({ target: 'http://localhost:5000' }));
+   app.use('/api/users/sign_out', proxy({ target: 'http://localhost:5000' }));
+   app.use('/api/users/sign_in', proxy({ target: 'http://localhost:5000' }));
+   app.use('/checkToken', proxy({ target: 'http://localhost:5000' }));
 }

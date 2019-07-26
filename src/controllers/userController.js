@@ -1,5 +1,6 @@
 const userQueries = require("../db/queries.users.js");
 const passport = require("passport");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
    signUp(req, res, next){
@@ -18,7 +19,6 @@ module.exports = {
              } else {
                passport.authenticate("local")(req, res, () => {
                  res.redirect("/");
-                 res.json(req.user);
                })
              }
            });
@@ -28,12 +28,19 @@ module.exports = {
    },
    signIn(req, res, next){
       passport.authenticate("local")(req, res, function () {
-         if(!req.user){
+         if(!req.user){ console.log(req);
             req.flash("notice", "Sign in failed. Please try again.");
             res.redirect("/users/sign_in");
          } else {
             req.flash("notice", "You've successfully signed in!");
-            res.json(req.user);
+
+            // Issue token
+          const payload = {  };
+          const token = jwt.sign(req.body.id, secret, {
+            expiresIn: '1h'
+          });
+          res.cookie('token', token, { httpOnly: true })
+            .sendStatus(200);
          }
       })
    },

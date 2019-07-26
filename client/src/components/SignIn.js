@@ -14,7 +14,7 @@ class SignIn extends Component {
     };
   }
   onChange = (e) => {
-    const state = this.state
+    const state = this.state;
     state[e.target.name] = e.target.value;
     this.setState(state);
   }
@@ -24,14 +24,14 @@ class SignIn extends Component {
 
     const { username, password } = this.state;
 
-    axios.post('/users/sign_in', { username, password })
+    axios.post('/api/users/sign_in', { username, password, body: JSON.stringify(this.state), headers: { 'Content-Type': 'application/json'} })
       .then((result) => {
-        localStorage.setItem('jwtToken', result.data.token);
+        
         this.setState({ message: '' });
         this.props.history.push('/')
       })
       .catch((error) => {
-        if(error.response.status === 401) {
+        if(error.response.status === 401) { console.log(error);
           this.setState({ message: 'Login failed. Username or password not match' });
         }
       });
