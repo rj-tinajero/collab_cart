@@ -20,7 +20,6 @@ class SignUp extends Component {
   
     onSubmit = (e) => { 
       e.preventDefault();
-  
       const { username, email, password } = this.state;
   
       axios.post('/users/create', { username, email, password })
