@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Route, Switch} from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
@@ -8,7 +9,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
    <BrowserRouter>
-    <App />
+      <Switch>
+         <Route path="/" component={App} />
+      </Switch>
+    {/* <App /> */}
    </BrowserRouter>
    , document.getElementById('root')
 );

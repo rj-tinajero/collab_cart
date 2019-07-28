@@ -9,6 +9,7 @@ const flash = require("express-flash");
 const expressValidator = require("express-validator");
 const jwt = require("jsonwebtoken");
 const cookParser = require('cookie-parser');
+const passport = require("passport");
 
 module.exports = {
   init(app, express) {
@@ -18,6 +19,8 @@ module.exports = {
     app.use(expressValidator());
     app.use(cors());
     app.use(logger('dev'));
+    app.use(passport.initialize());
+    require("./passport");
     app.use(session({
       secret: process.env.cookieSecret,
       resave: false,
@@ -25,11 +28,11 @@ module.exports = {
       cookie: { maxAge: 1.21e+9 }
     }));
     app.use(flash());
-    passportConfig.init(app);
+    // passportConfig.init(app);
 
-    app.use((req, res, next) => {
-      res.locals.currentUser = req.user;
-      next();
-    })
+    // app.use((req, res, next) => {
+    //   res.locals.currentUser = req.user;
+    //   next();
+    // })
   }
 };
