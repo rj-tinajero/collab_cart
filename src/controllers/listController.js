@@ -13,7 +13,8 @@ module.exports = {
    },
    create(req, res, next) {
       let newList = {
-         title: req.body.title
+         title: req.body.title,
+         userId: req.user.id
       };
       listQueries.addList(newList, (err, item) => {
          if(err) {

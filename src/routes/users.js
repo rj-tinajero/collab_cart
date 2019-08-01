@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+const User = require("../db/models").User;
 const validation = require("./validation");
-const withAuth = require("../auth/middleware");
 
 const userController = require("../controllers/userController");
 
@@ -24,6 +24,7 @@ router.get("/auth/google/callback",
    passport.authenticate("google", { failureRedirect: "/", session: false }),
    function(req, res) {
        var token = req.user.token;
+       console.log(req.user, "USER");
        res.redirect("http://localhost:3000?token=" + token);
    }
 );
@@ -31,7 +32,7 @@ router.get('/logout', function(req, res) {
     console.log("logged out!");
     req.logout();
     res.redirect('/');
-})
+});
 
 
 module.exports = router;

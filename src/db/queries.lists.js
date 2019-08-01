@@ -1,5 +1,6 @@
 const List = require("./models").List;
 const Item = require("./models").Item;
+const User = require("./models").User;
 const Purchased = require("./models").Purchased;
 
 module.exports = {
@@ -25,14 +26,16 @@ module.exports = {
    },
    getList(id, callback) {
       return List.findById(id, {
-          include: [{
+          include: [
+             {
               model: Item,
               as: "items",
-            //   include: [{
-            //      model: Purchased,
-            //      as: "purchaseds"
-            //   }]
-          }]
+             },
+             {
+               model: User,
+               as: "user"
+             },
+         ]
       })
       .then((list) => {
           callback(null, list);

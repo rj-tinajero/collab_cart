@@ -20,10 +20,6 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "listId",
       onDelete: "CASCADE"
     });
-    Item.hasOne(models.Purchased, {
-      foreignKey: "itemId",
-      as: "purchaseds"
-    })
   };
   return Item;
 };
