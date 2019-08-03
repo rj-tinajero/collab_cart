@@ -31,14 +31,14 @@ passport.use(
         return User.create({ 
            email: userData.email
          })
-       } else { console.log(user.id, "alkdfsjbvclihSBDL ");
+       } else { 
          return Promise.resolve(user);
        }
      }
-   ).then((user) => {
+   )
     
     done(null, userData);
-   })
+  
   //  console.log(this.user, "KJBIUBWSDPIUWBCP");
   //  done(null, userData);
   },
