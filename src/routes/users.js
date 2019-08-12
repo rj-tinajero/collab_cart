@@ -26,7 +26,7 @@ router.get("/auth/google/callback",
        var token = req.user.token;
        console.log(req.user, "USER");
        if(process.env.NODE_ENV === 'production') {
-        res.redirect("http://localhost:5000?token=" + token);
+        res.redirect("https://rj-tinajero-collabcart.herokuapp.com?token=" + token);
        }
        res.redirect("http://localhost:3000?token=" + token);
    }
