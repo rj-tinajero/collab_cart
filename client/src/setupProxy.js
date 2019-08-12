@@ -11,5 +11,6 @@ module.exports = function(app) {
    app.use('/api/lists/:listId', proxy({ target: 'http://localhost:5000'}));
    app.use('/auth/google', proxy({ target: 'http://localhost:5000'}));
    app.use('/auth/google/callback', proxy({ target: 'http://localhost:5000'}));
+   app.use('/auth/google/callback', proxy({ target: 'https://rj-tinajero-collabcart.herokuapp.com'}));
    app.use('/logout', proxy({ target: 'http://localhost:5000'}));
 }
