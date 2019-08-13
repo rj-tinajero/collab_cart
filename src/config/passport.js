@@ -39,9 +39,6 @@ passport.deserializeUser(function(user, done) {
       )
        
        done(null, userData);
-     
-     //  console.log(this.user, "KJBIUBWSDPIUWBCP");
-     //  done(null, userData);
      },
     )
    );
@@ -77,9 +74,6 @@ passport.deserializeUser(function(user, done) {
 //    )
     
 //     done(null, userData);
-  
-//   //  console.log(this.user, "KJBIUBWSDPIUWBCP");
-//   //  done(null, userData);
 //   },
 //  )
 // );
