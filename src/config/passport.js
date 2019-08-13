@@ -54,7 +54,8 @@ passport.use(
   {
    clientID: process.env.CLIENT_ID,
    clientSecret: process.env.CLIENT_SECRET,
-   callbackURL: "https://rj-tinajero-collabcart.herokuapp.com/auth/google/callback",
+   callbackURL: "/auth/google/callback",
+   proxy: true
   },
   function(accessToken, refreshToken, profile, done) {
      console.log('access token', accessToken); 
