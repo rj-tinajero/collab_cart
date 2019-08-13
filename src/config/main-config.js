@@ -33,9 +33,9 @@ module.exports = {
       app.get('/', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
       });
-      app.get('/auth/google/callback', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-      });
+      // app.get('/auth/google/callback', (req, res) => {
+      //   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+      // });
 
     }
     app.use(flash());
