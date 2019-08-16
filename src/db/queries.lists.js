@@ -15,7 +15,8 @@ module.exports = {
    },
    addList(newList, callback) {
       return List.create({
-         title: newList.title
+         title: newList.title,
+         userId: newList.userId
       })
       .then((list) => {
          callback(null, list);
@@ -28,19 +29,20 @@ module.exports = {
       return List.findById(id, {
           include: [
              {
-              model: Item,
-              as: "items",
+               model: User,
+               as: "user" 
              },
              {
-               model: User,
-               as: "user"
-             },
+              model: Item,
+              as: "items",
+             }
          ]
       })
       .then((list) => {
           callback(null, list);
       })
       .catch((err) => {
+          console.log(err,"okay in controller now");
           callback(err);
       })
   }

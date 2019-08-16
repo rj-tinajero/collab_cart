@@ -11,10 +11,10 @@ module.exports = {
         }
      })
    },
-   create(req, res, next) {
+   create(req, res, next) { console.log(req.body, "AKHASBVDLUYIVADS");
       let newList = {
          title: req.body.title,
-         userId: req.user.id
+         userId: req.body.id
       };
       listQueries.addList(newList, (err, item) => {
          if(err) {

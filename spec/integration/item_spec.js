@@ -131,7 +131,7 @@ describe("Item", () => {
         Item.findOne({
           where: { purchased: true }
         })
-        .then((item) => { console.log(item.purchased)
+        .then((item) => { 
           expect(item.purchased).toBe(true);
           done();
         })

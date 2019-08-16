@@ -24,6 +24,7 @@ class App extends Component {
 
   componentDidMount() {
     console.log(window.localStorage, "current reality");
+    console.log(this.props, "PROPS HERE");
   }
 
   logOut() {  

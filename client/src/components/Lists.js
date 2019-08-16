@@ -15,6 +15,7 @@ class Lists extends Component {
       this.fetchLists = this.fetchLists.bind(this);
    }
    componentDidMount() { 
+      console.log(window.localStorage, "current reality");
       this.fetchLists();
    }
 
@@ -37,11 +38,18 @@ class Lists extends Component {
 
     createList(evt) {
       evt.preventDefault();
-      axios({
-        url: `http://localhost:5000/lists`,
-        method: 'post',
-        data: `title=${this.state.inputText}`
-      }).then(this.fetchLists)
+      // axios({
+      //   url: `http://localhost:5000/lists`,
+      //   method: 'post',
+      //   data: `title=${this.state.inputText}`
+      // })
+      let num = Object.values(window.localStorage)[0];
+      let number = Number(num);
+      axios.post('http://localhost:5000/lists', {
+         title: `${this.state.inputText}`,
+         id: number
+      })
+      .then(this.fetchLists)
       .catch(err => console.log(err))
     }
 

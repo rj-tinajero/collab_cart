@@ -24,12 +24,34 @@ router.get("/auth/google/callback",
    passport.authenticate("google", { failureRedirect: "/", session: false }),
    function(req, res) {
        var token = req.user.token;
-       console.log(req.user, "USER");
-       if(process.env.NODE_ENV === 'production') {
-        res.redirect("https://rj-tinajero-collabcart.herokuapp.com?token=" + token);
-       }
-       res.redirect("http://localhost:3000?token=" + token);
+       console.log(token, "TOKEN!!!!!");
+       let token1 = [];
+       function find(email) {
+        return User.findOne({ where: {email: req.user.email} })
+        .then((user) => {
+            token1.push(user.id);
+            let token2 = token1[0];
+            if(process.env.NODE_ENV === 'production') {
+                res.redirect("https://rj-tinajero-collabcart.herokuapp.com?token=" + token2);
+               }
+               res.redirect("http://localhost:3000?token=" + token2);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+               
+       } 
+       find(req.user.email);
+       
+
+       
+    //    if(process.env.NODE_ENV === 'production') {
+    //     res.redirect("https://rj-tinajero-collabcart.herokuapp.com?token=" + token);
+    //    }
+    //    res.redirect("http://localhost:3000?token=" + token);
+      
    }
+   
 );
 router.get('/logout', function(req, res) {
     console.log("logged out!");
