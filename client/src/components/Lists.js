@@ -45,7 +45,7 @@ class Lists extends Component {
       // })
       let num = Object.values(window.localStorage)[0];
       let number = Number(num);
-      axios.post('http://localhost:5000/lists', {
+      axios.post('https://rj-tinajero-collabcart.herokuapp.com/lists', {
          title: `${this.state.inputText}`,
          id: number
       })
@@ -59,7 +59,7 @@ class Lists extends Component {
       function deleteList(id, cb) {
          return (evt) => {
            evt.preventDefault();
-           axios.get(`http://localhost:5000/lists/${id}/delete`).then(cb);
+           axios.get(`https://rj-tinajero-collabcart.herokuapp.com/lists/${id}/delete`).then(cb);
          };
        }
        
