@@ -32,7 +32,7 @@
     "express-session": "^1.15.6",
     "express-validator": "^5.0.2",
     "jasmine-enzyme": "^7.0.2",
-    "jsdom": "^15.1.1",
+    "jsdom": "^16.5.0",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
     "nodemon": "^1.19.1",
